@@ -19,8 +19,7 @@ public class ProductHandler {
         this.productService = productService;
     }
 
-    public Mono<ServerResponse> getAll(ServerRequest req) {
-        return ok().contentType(MediaType.TEXT_EVENT_STREAM)
-                   .body(productService.getAll(), Product.class);
+    public Mono<ServerResponse> getAll(ServerRequest request) {
+        return ok().contentType(MediaType.TEXT_EVENT_STREAM).body(productService.getAll(), Product.class);
     }
 }

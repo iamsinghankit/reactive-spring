@@ -13,7 +13,7 @@ public class RoutesConfig {
 
     @Bean
     public RouterFunction<ServerResponse> router(ProductHandler productHandler) {
-        return route().GET("/products", productHandler::getAll)
+        return route().GET("/all", productHandler::getAll)
                       .build();
     }
 }

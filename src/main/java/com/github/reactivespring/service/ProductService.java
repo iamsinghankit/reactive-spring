@@ -1,23 +1,20 @@
 package com.github.reactivespring.service;
 
 import com.github.reactivespring.model.Product;
-import lombok.RequiredArgsConstructor;
+import com.github.reactivespring.proxy.ProductProxy;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
-import java.time.Duration;
-import java.util.stream.Stream;
-
-/**
- * @author iamsinghankit
- */
 @Service
-@RequiredArgsConstructor
 public class ProductService {
 
-    public Flux<Product> getAll() {
+    private final ProductProxy proxy;
 
-        return Flux.fromStream(Stream.of(new Product("Beer"), new Product("Chocolate")))
-           .delayElements(Duration.ofSeconds(3));
+    public ProductService(ProductProxy proxy) {
+        this.proxy = proxy;
+    }
+
+    public Flux<Product> getAll() {
+        return proxy.getAll();
     }
 }
